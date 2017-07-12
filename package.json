@@ -1,0 +1,13 @@
+{
+  "name": "inlinedb-cli",
+  "version": "0.0.0",
+  "description": "Command line interface for InlineDB",
+  "main": "index.js",
+  "repository": "inlinedb/inlinedb-cli",
+  "author": "Gopikrishna Sathyamurthy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inlinedb/inlinedb-cli/issues"
+  },
+  "homepage": "https://github.com/inlinedb/inlinedb-cli#readme"
+}
