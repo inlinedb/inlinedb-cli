@@ -1,7 +1,9 @@
 const chalk = require('chalk');
 
-const error = message => console.log(chalk.red(message));
-const log = message => console.log(chalk.cyan(message));
+const error = (...messages) => console.log(chalk.red(...messages));
+const info = (...messages) => console.log(chalk.cyan(...messages));
+const log = (...messages) => console.log(chalk.green(...messages));
 
 module.exports.error = error;
+module.exports.info = info;
 module.exports.log = log;
