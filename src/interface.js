@@ -1,5 +1,7 @@
 const {Completer} = require('./completer');
 const {Context} = require('./context');
+const about = require('./cli/about');
+const exit = require('./cli/exit');
 const logger = require('./utils/logger');
 const readline = require('readline');
 
@@ -43,28 +45,8 @@ class Interface {
 
   defineBuiltIn() {
 
-    this.addHandler('about', () => {
-
-      logger.log('Welcome to InlineDB Command Line Interface');
-      logger.log('Version:', require('../package').version);
-
-    });
-
-    this.addHandler('exit', () => {
-
-      if (this.context.get() === Context.IDB) {
-
-        this.context.clear();
-
-      } else {
-
-        this.context.cli.close();
-
-        process.exit(0);
-
-      }
-
-    });
+    this.addHandler(...about);
+    this.addHandler(...exit);
 
   }
 
