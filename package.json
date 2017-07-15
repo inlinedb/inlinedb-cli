@@ -2,7 +2,10 @@
   "name": "inlinedb-cli",
   "version": "0.0.0",
   "description": "Command line interface for InlineDB",
-  "main": "index.js",
+  "bin": {
+    "idb": "bin/idb.js"
+  },
+  "main": "bin/idb.js",
   "repository": "inlinedb/inlinedb-cli",
   "author": "Gopikrishna Sathyamurthy",
   "license": "ISC",
