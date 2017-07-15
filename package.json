@@ -9,5 +9,11 @@
   "bugs": {
     "url": "https://github.com/inlinedb/inlinedb-cli/issues"
   },
-  "homepage": "https://github.com/inlinedb/inlinedb-cli#readme"
+  "homepage": "https://github.com/inlinedb/inlinedb-cli#readme",
+  "peerDependencies": {
+    "inlinedb": "2.x"
+  },
+  "devDependencies": {
+    "inlinedb": "2.0.5"
+  }
 }
