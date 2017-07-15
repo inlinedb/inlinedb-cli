@@ -2,9 +2,11 @@ const contexts = new WeakMap();
 
 class Context {
 
-  static get ROOT() { return 'ROOT'; }
+  static get ALL() { return 'ALL'; }
 
-  static get DB() { return 'DB'; }
+  static get IDB() { return 'IDB'; }
+
+  static get ROOT() { return 'ROOT'; }
 
   constructor(cli) {
 
@@ -33,7 +35,7 @@ class Context {
 
     contexts.set(this, context);
 
-    if(context === Context.DB) {
+    if (context === Context.IDB) {
 
       path = `/${options.dbName}`;
 

@@ -1,3 +1,4 @@
+const {Completer} = require('./completer');
 const {Context} = require('./context');
 const readline = require('readline');
 
@@ -14,8 +15,9 @@ class Interface {
 
   }
 
-  addHandler(command, handler) {
+  addHandler(command, handler, context) {
 
+    Completer.add(command, context);
     handlers.set(command, handler);
 
     return this;
@@ -25,34 +27,9 @@ class Interface {
   completer(command) {
 
     return [
-      ['about'].filter(completion => completion.indexOf(command) === 0),
+      Completer.complete(command, this.context.get()),
       command
     ];
-
-  }
-
-  handler(command) {
-
-    const handler = handlers.get(command);
-
-    handler && handler(command.split(' ').slice(1));
-
-    this.context.prompt();
-
-  }
-
-  defineContext() {
-
-    const cli = readline.createInterface({
-      completer: this.completer,
-      input: process.stdin,
-      output: process.stdout,
-      prompt: 'idb $ '
-    });
-
-    cli.on('line', this.handler.bind(this));
-
-    this.context = new Context(cli);
 
   }
 
@@ -64,6 +41,47 @@ class Interface {
       console.log('Version:', require('../package').version);
 
     });
+
+    this.addHandler('exit', () => {
+
+      if (this.context.get() === Context.IDB) {
+
+        this.context.clear();
+
+      } else {
+
+        this.context.cli.close();
+
+        process.exit(0);
+
+      }
+
+    });
+
+  }
+
+  defineContext() {
+
+    const cli = readline.createInterface({
+      completer: this.completer.bind(this),
+      input: process.stdin,
+      output: process.stdout,
+      prompt: 'idb $ '
+    });
+
+    cli.on('line', this.handler.bind(this));
+
+    this.context = new Context(cli);
+
+  }
+
+  handler(command) {
+
+    const handler = handlers.get(command);
+
+    handler && handler(command.split(' ').slice(1));
+
+    this.context.prompt();
 
   }
 
