@@ -75,11 +75,20 @@ class Interface {
 
   }
 
-  handler(command) {
+  handler(commandText) {
 
+    const [command, ...params] = commandText.split(' ');
     const handler = handlers.get(command);
 
-    handler && handler(command.split(' ').slice(1));
+    if (handler) {
+
+      handler(params, this);
+
+    } else {
+
+      console.error(`Unknown command: ${command}`);
+
+    }
 
     this.context.prompt();
 

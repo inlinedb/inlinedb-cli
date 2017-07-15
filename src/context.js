@@ -37,7 +37,7 @@ class Context {
 
     if (context === Context.IDB) {
 
-      path = `/${options.dbName}`;
+      path = `/${options.idbName}/`;
 
     }
 
