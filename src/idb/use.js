@@ -20,6 +20,8 @@ const handler = (params, cli) => {
     const idb = new InlineDB(idbName);
 
     cli.context.set(Context.IDB, {idbName});
+    cli.env = ['idb', idb];
+    cli.env = ['idbName', idbName];
 
   } catch (error) {
 

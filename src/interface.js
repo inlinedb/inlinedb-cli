@@ -3,8 +3,15 @@ const {Context} = require('./context');
 const readline = require('readline');
 
 const handlers = new Map();
+const env = new Map();
 
 class Interface {
+
+  set env(params) {
+
+    env.set(...params);
+
+  }
 
   constructor() {
 
@@ -82,7 +89,7 @@ class Interface {
 
     if (handler) {
 
-      handler(params, this);
+      handler(params, this, env);
 
     } else {
 
