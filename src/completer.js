@@ -18,7 +18,8 @@ class Completer {
 
     return commands.get(Context.ALL)
       .concat(commands.get(context))
-      .filter(command => command.indexOf(partialCommand) === 0);
+      .filter(command => command.indexOf(partialCommand) === 0)
+      .sort();
 
   }
 
