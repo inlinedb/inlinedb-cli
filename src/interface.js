@@ -1,5 +1,6 @@
 const {Completer} = require('./completer');
 const {Context} = require('./context');
+const logger = require('./utils/logger');
 const readline = require('readline');
 
 const handlers = new Map();
@@ -44,8 +45,8 @@ class Interface {
 
     this.addHandler('about', () => {
 
-      console.log('Welcome to InlineDB Command Line Interface');
-      console.log('Version:', require('../package').version);
+      logger.log('Welcome to InlineDB Command Line Interface');
+      logger.log('Version:', require('../package').version);
 
     });
 
@@ -93,7 +94,7 @@ class Interface {
 
     } else {
 
-      console.error(`Unknown command: ${command}`);
+      logger.error(`Unknown command: ${command}`);
 
     }
 

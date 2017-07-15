@@ -1,6 +1,7 @@
 const {Context} = require('../context');
 const InlineDB = require('inlinedb');
 const {dbExists} = require('../utils/file');
+const logger = require('../utils/logger');
 
 const command = 'use';
 const context = Context.ROOT;
@@ -13,7 +14,7 @@ const handler = (params, cli) => {
 
     if (idbName && !dbExists(idbName)) {
 
-      console.log(`Database '${idbName}' does not exist. It will created on first commit.`);
+      logger.log(`Database '${idbName}' does not exist. It will created on first commit.`);
 
     }
 
@@ -25,7 +26,7 @@ const handler = (params, cli) => {
 
   } catch (error) {
 
-    console.error(error.message);
+    logger.error(error.message);
 
   }
 
