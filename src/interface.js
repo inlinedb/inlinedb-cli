@@ -1,6 +1,7 @@
 const {Completer} = require('./completer');
 const {Context} = require('./context');
 const about = require('./cli/about');
+const clear = require('./cli/clear');
 const exit = require('./cli/exit');
 const logger = require('./utils/logger');
 const readline = require('readline');
@@ -47,6 +48,7 @@ class Interface {
 
     this.addHandler(...about);
     this.addHandler(...exit);
+    this.addHandler(...clear);
 
   }
 
