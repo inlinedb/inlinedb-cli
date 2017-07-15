@@ -14,7 +14,7 @@ const handler = (params, cli) => {
 
     if (idbName && !dbExists(idbName)) {
 
-      logger.log(`Database '${idbName}' does not exist. It will created on first commit.`);
+      logger.info(`Database '${idbName}' does not exist. It will created.`);
 
     }
 

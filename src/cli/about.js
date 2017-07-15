@@ -4,8 +4,8 @@ const command = 'about';
 
 const handler = () => {
 
-  logger.log('Welcome to InlineDB Command Line Interface');
-  logger.log('Version:', require('../../package').version);
+  logger.info('Welcome to InlineDB Command Line Interface');
+  logger.info('Version:', require('../../package').version);
 
 };
 
