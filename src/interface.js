@@ -1,3 +1,4 @@
+const {Context} = require('./context');
 const readline = require('readline');
 
 const handlers = new Map();
@@ -6,18 +7,10 @@ class Interface {
 
   constructor() {
 
-    this.cli = readline.createInterface({
-      completer: this.completer,
-      input: process.stdin,
-      output: process.stdout,
-      prompt: 'idb $ '
-    });
+    this.defineBuiltIn();
+    this.defineContext();
 
-    this.cli.on('line', this.handler.bind(this));
-
-    this.preDefine();
-
-    this.cli.prompt();
+    this.context.prompt();
 
   }
 
@@ -44,11 +37,26 @@ class Interface {
 
     handler && handler(command.split(' ').slice(1));
 
-    this.cli.prompt();
+    this.context.prompt();
 
   }
 
-  preDefine() {
+  defineContext() {
+
+    const cli = readline.createInterface({
+      completer: this.completer,
+      input: process.stdin,
+      output: process.stdout,
+      prompt: 'idb $ '
+    });
+
+    cli.on('line', this.handler.bind(this));
+
+    this.context = new Context(cli);
+
+  }
+
+  defineBuiltIn() {
 
     this.addHandler('about', () => {
 
