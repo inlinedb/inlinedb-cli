@@ -2,15 +2,13 @@ const {Context} = require('../context');
 
 const command = 'exit';
 
-const handler = () => {
+const handler = (params, cli) => {
 
-  if (this.context.get() === Context.IDB) {
+  if (cli.context.get() === Context.IDB) {
 
-    this.context.clear();
+    cli.context.clear();
 
   } else {
-
-    this.context.cli.close();
 
     process.exit(0);
 
