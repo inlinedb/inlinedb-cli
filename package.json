@@ -17,7 +17,7 @@
     "inlinedb": "2.x"
   },
   "devDependencies": {
-    "chalk": "2.0.1",
+    "chalk": "2.1.0",
     "inlinedb": "2.0.5"
   }
 }
